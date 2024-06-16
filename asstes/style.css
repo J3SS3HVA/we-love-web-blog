@@ -29,9 +29,22 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  font-family: "Segoe Print", sans-serif;
 }
 
 /* first scroll */
+
+h1 {
+  font-weight: normal;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-weight: normal;
+  color: var(--secondary-color);
+}
+
+/* ===== page 1 ==== */
 
 header {
   height: 100vh;
@@ -40,28 +53,59 @@ header {
   align-items: center;
 }
 
-
-h1 {
-  font-family: "Segoe Print", sans-serif;
-  font-weight: normal;
-  color: var(--primary-color);
-}
-
-h2 {
-  font-family: "Segoe Print", sans-serif;
-  font-weight: normal;
-  color: var(--secondary-color);
-}
-
 .page-logo p {
-  font-family: "Segoe Print", sans-serif;
   font-weight: normal;
   color: var(--primary-color);
   margin: auto;
 }
 
+/* ==== page 2 ===== */
+
 main {
   height: 100vh;
+}
+
+.blogs{
+  height: 100%;
+  padding: 2em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--body-color);
+}
+
+details{
+  border: var(--secondary-color) 1px solid;
+  width: 90%;
+  padding: 2em;
+  margin: 2em 0;
+  transition: box-shadow 0.3s ease;
+
+  &:hover{
+    box-shadow: 0 0 10px var(--secondary-color);
+  }
+}
+
+details img{
+  object-fit: cover;
+}
+
+.description{
+  padding: 2em 0;
+}
+
+details a{
+  color: var(--secondary-color);
+}
+
+details summary{
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+details .description{
+  color: var(--primary-color);
 }
 
 .slide {
@@ -73,6 +117,75 @@ main {
   width: 40px;
   z-index: 3;
 }
+
+/* Voor details met een even index */
+details:nth-child(even):hover {
+  box-shadow: 0 0 10px var(--primary-color); /* Voeg box-shadow toe bij hover met dezelfde kleur als de border */
+}
+
+details:nth-child(even) {
+  border-color: var(--primary-color);
+}
+
+details:nth-child(even) a {
+  color: var(--primary-color);
+}
+
+details:nth-child(even) summary {
+  color: var(--primary-color);
+}
+
+details:nth-child(even) .description {
+  color: var(--secondary-color);
+}
+
+@media (min-width: 44em){
+  .blogs{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+  }
+
+  .blogs h2{
+    grid-area: 1 / 2 / 2 / 3; 
+    margin: auto;
+  }
+
+  details{
+    max-width: 500px;
+    height: auto;
+  }
+
+  details summary{
+    text-align: center;
+    align-items: center;
+  }
+
+  .blogs details:nth-child(2) {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+  
+  .blogs details:nth-child(3) {
+    grid-area: 2 / 2 / 3 / 3;
+  }
+  
+  .blogs details:nth-child(4) {
+    grid-area: 2 / 3 / 3 / 4;
+  }
+  
+  .blogs details:nth-child(5) {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  
+  .blogs details:nth-child(6) {
+    grid-area: 3 / 2 / 4 / 3;
+  }
+}
+
+
+
 
 .slide-up {
   top: 20px;
